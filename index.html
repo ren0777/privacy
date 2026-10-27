@@ -16,28 +16,48 @@
 <body>
   <main>
     <h1>Privacy Policy for AnimeTab</h1>
-    <p>Last updated: October 25, 2026</p>
+    <p>Last updated: October 27, 2026</p>
 
     <h2>Overview</h2>
-    <p>AnimeTab replaces your new tab page with anime wallpapers, a live clock, a search bar, and daily quotes. It does not require an account and has no backend service of its own.</p>
+    <p>AnimeTab replaces your new tab page with anime wallpapers, a live clock, a search bar, daily quotes, quick links, and an optional airing countdown. It does not require an account and has no backend service of its own.</p>
 
     <h2>Data Collection</h2>
-    <p>AnimeTab does not collect personal information, browsing history, or usage analytics. It contains no analytics SDKs, advertising, or tracking scripts.</p>
+    <p>AnimeTab does not collect personal information or browsing history, and it does not send any usage data anywhere. It contains no analytics SDKs, advertising, or tracking scripts. A small set of anonymous counters (for example, how many new tabs you opened this week) is kept only on your device so you can see it in the Wallpaper Studio; it is deleted automatically after 30 days.</p>
+
+    <h2>Search</h2>
+    <p>The search bar uses Chrome's <code>chrome.search</code> API, so your query goes to the default search engine you chose in Chrome settings. AnimeTab does not see, store, or change your search engine, and it does not record your searches.</p>
 
     <h2>What Is Stored Locally</h2>
     <p>AnimeTab uses <code>chrome.storage.local</code> and IndexedDB on your device to remember:</p>
     <ul>
-      <li><code>nekosWallpaperUrl</code>, <code>anime_bg_url</code>: the address of the current wallpaper.</li>
-      <li><code>animeThemeMode</code>: your selected theme.</li>
+      <li><code>nekosWallpaperUrl</code>, <code>anime_bg_url</code>, <code>wallpaperPinnedUrl</code>: the current or pinned wallpaper address.</li>
+      <li><code>wallpaperSource</code>, <code>wallpaperCategory</code>, <code>bingPool</code>: your wallpaper source choice and a one-day cache of photo-of-the-day addresses.</li>
+      <li><code>animeThemeMode</code>, <code>moodTouched</code>, <code>clockFormat</code>, <code>ambientMode</code>: your theme, clock and ambient sound preferences.</li>
       <li><code>customBackgroundEnabled</code>, <code>customBackgroundMime</code>, <code>customBackgroundRef</code>, <code>customBackgroundData</code>: your own uploaded background, if you choose to add one. The file itself stays in your browser.</li>
+      <li><code>quickLinksV1</code>: your quick-link tiles.</li>
+      <li><code>focusMinutes</code>, <code>focusSession</code>, <code>focusCompleteAt</code>: your focus timer settings and current session.</li>
+      <li><code>anilistAiringCache</code>, <code>anilistWatchlist</code>, <code>anilistWatchCache</code>: cached public airing data and the shows you pinned.</li>
+      <li><code>growthState</code>: how many times you used the share buttons (for unlocking cosmetic themes).</li>
+      <li><code>animetabMetrics</code>: the local anonymous counters described above.</li>
     </ul>
     <p>This data never leaves your Chrome profile.</p>
 
     <h2>Network Requests</h2>
+    <p>AnimeTab only contacts the services below, and never sends personal data to them:</p>
     <ul>
-      <li>Wallpapers are requested from the public <a href="https://nekos.best">nekos.best</a> API. No personal data is sent with these requests.</li>
-      <li>When you submit a search, you are redirected to Google Search with your query.</li>
-      <li>Shortcut links (e.g. Crunchyroll, MyAnimeList) open those websites only when you click them.</li>
+      <li><a href="https://nekos.best">nekos.best</a> and <a href="https://wallhaven.cc">wallhaven.cc</a>: public anime wallpaper APIs. Requests to nekos.best include a User-Agent that identifies AnimeTab, as its API terms ask.</li>
+      <li><a href="https://www.bing.com">Bing</a>: the public photo-of-the-day archive, used only if you choose that wallpaper source.</li>
+      <li><a href="https://anilist.co">AniList</a>: public airing schedule data for the Airing Soon card, and show search when you add to your watchlist.</li>
+      <li>Google's favicon service: loads the small icon for each quick-link tile, using only the site's domain name.</li>
+      <li>Shortcut links and share buttons open those websites only when you click them.</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <ul>
+      <li><code>storage</code>: saves the preferences listed above on your device.</li>
+      <li><code>search</code>: sends search-bar queries to your Chrome default search engine.</li>
+      <li><code>downloads</code>: saves a wallpaper to your computer when you click the download button.</li>
+      <li><code>declarativeNetRequestWithHostAccess</code>: sets the AnimeTab User-Agent on nekos.best wallpaper requests only.</li>
     </ul>
 
     <h2>Data Sharing</h2>
